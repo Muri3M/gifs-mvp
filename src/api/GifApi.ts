@@ -16,6 +16,7 @@ export default function GifsApi(): void {
     params: {
       api_key: 'YslmuhMztVsKV6o4Bhfgj86lz0NUteUr',
       q: store.state.search,
+      limit: 25,
       offset: store.state.searchCount,
     },
   }).then((Response) => {

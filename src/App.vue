@@ -1,5 +1,6 @@
 <template>
   <div>
+    <DisplayMyGifs />
     <Search />
     <DisplayGifs />
   </div>
@@ -11,6 +12,8 @@ import store from './store';
 import GifsApi from './api/GifApi';
 
 import DisplayGifs from './components/DisplayGifs.vue';
+import DisplayMyGifs from './components/DisplayMyGifs.vue';
+
 import Search from './components/Search.vue';
 
 window.onscroll = () => {
@@ -26,7 +29,7 @@ window.onscroll = () => {
 };
 
 @Options({
-  components: { DisplayGifs, Search },
+  components: { DisplayGifs, DisplayMyGifs, Search },
 })
 export default class App extends Vue {}
 </script>

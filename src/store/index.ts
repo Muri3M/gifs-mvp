@@ -19,15 +19,24 @@ export default createStore<State>({
     ADD_GIF(state, gif: Gif) {
       state.gifs.push(gif);
     },
+    RESET_GIF_STATE(state) {
+      state.gifs = [];
+    },
+
     ADD_MY_GIF(state, gif: Gif) {
       state.myGifs.push(gif);
     },
+    EDIT_MY_GIF(state, gif: Gif) {
+      const index = state.myGifs.findIndex((g) => g.id === gif.id);
+      state.myGifs[index] = gif;
+    },
+    DELETE_MY_GIF(state, gif: Gif) {
+      state.myGifs = state.myGifs.filter((g) => g.id !== gif.id);
+    },
+
     SET_SEARCH(state, search: string) {
       state.search = search;
       state.searchCount = 0;
-    },
-    RESET_GIF_STATE(state) {
-      state.gifs = [];
     },
     SEARCH_COUNT_UP(state) {
       state.searchCount += 25;
@@ -37,18 +46,25 @@ export default createStore<State>({
     addGif({ commit }, gif: Gif) {
       commit('ADD_GIF', gif);
     },
+    resetGifState({ commit }) {
+      commit('RESET_GIF_STATE');
+    },
+
     addMyGif({ commit }, gif: Gif) {
       commit('ADD_MY_GIF', gif);
     },
+    editMyGif({ commit }, gif: Gif) {
+      commit('EDIT_MY_GIF', gif);
+    },
+    deleteMyGif({ commit }, gif: Gif) {
+      commit('DELETE_MY_GIF', gif);
+    },
+
     setSearch({ commit }, search: string) {
       commit('SET_SEARCH', search);
-    },
-    resetGifState({ commit }) {
-      commit('RESET_GIF_STATE');
     },
     searchCountUp({ commit }) {
       commit('SEARCH_COUNT_UP');
     },
   },
-  modules: {},
 });
