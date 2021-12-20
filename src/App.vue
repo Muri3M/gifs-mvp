@@ -1,16 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <button @click="GifsApi('hi')">load</button>
+    <DisplayGifs />
+  </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
+import DisplayGifs from './components/DisplayGifs.vue';
+import GifsApi from './api/GifApi';
 
 @Options({
-  components: {
-    HelloWorld,
-  },
+  components: { DisplayGifs },
+  methods: { GifsApi },
 })
 export default class App extends Vue {}
 </script>
