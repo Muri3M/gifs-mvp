@@ -1,7 +1,17 @@
 <template>
   <div class="Container">
-    <button @click="myGifs = !myGifs" />
-    <Search />
+    <div class="ui grey two item inverted menu">
+      <a :class="gifsClass" @click="(myGifs = false), (myGifsClass = inative), (gifsClass = active)"
+        >Gifs</a
+      >
+      <a
+        :class="myGifsClass"
+        @click="(myGifs = true), (myGifsClass = active), (gifsClass = inative)"
+        >My Gifs</a
+      >
+    </div>
+    <div class="Spacing" v-if="myGifs" />
+    <Search v-else />
     <DisplayMyGifs v-if="myGifs" />
     <DisplayGifs v-else />
   </div>
@@ -29,6 +39,14 @@ window.addEventListener('scroll', () => {
 })
 export default class App extends Vue {
   myGifs = false;
+
+  myGifsClass = 'item';
+
+  gifsClass = 'item active';
+
+  active = 'item active';
+
+  inative = 'item';
 }
 </script>
 
@@ -42,8 +60,9 @@ export default class App extends Vue {
   padding: 40px;
   background: #2c3e50;
   background-size: cover;
+  min-height: 100vh;
 }
-.Container {
-  flex: 1;
+.Spacing {
+  height: 67px;
 }
 </style>

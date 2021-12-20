@@ -1,19 +1,17 @@
 <template>
-  <div class="ui sticky">
-    <form @submit.prevent="setSearch" class="Search">
-      <div class="ui search">
-        <div class="ui icon input">
-          <input
-            class="prompt"
-            type="text"
-            placeholder="Enter with your search..."
-            v-model="search"
-          />
-          <i class="search icon"></i>
-        </div>
+  <form @submit.prevent="setSearch" class="Search">
+    <div class="ui search">
+      <div class="ui icon input" style="width: 60%">
+        <input
+          class="prompt"
+          type="text"
+          placeholder="Enter with your search..."
+          v-model="search"
+        />
+        <i class="search icon"></i>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </template>
 
 <script Lang="ts">
