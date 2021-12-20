@@ -14,9 +14,6 @@ import { Options, Vue } from 'vue-class-component';
     addMyGif() {
       this.$store.dispatch('addMyGif', this.gif);
     },
-    View() {
-      return this.gif.fullName();
-    },
   },
 })
 export default class Gif extends Vue {}

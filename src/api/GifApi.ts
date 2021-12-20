@@ -7,12 +7,18 @@ interface RequestInterface {
   data: any[];
 }
 
-export default function GifsApi(search: string, offset?: number): void {
+export default function GifsApi(): void {
   const GifsAxios = Axios.create();
+  if (store.state.searchCount === 0) {
+    store.dispatch('resetGifState');
+  }
   GifsAxios.get<RequestInterface>('https://api.giphy.com/v1/gifs/search', {
-    params: { api_key: 'YslmuhMztVsKV6o4Bhfgj86lz0NUteUr', q: search, offset },
+    params: {
+      api_key: 'YslmuhMztVsKV6o4Bhfgj86lz0NUteUr',
+      q: store.state.search,
+      offset: store.state.searchCount,
+    },
   }).then((Response) => {
-    console.log(Response.data.data);
     Response.data.data.map((GifDto) => store.dispatch('addGif', GifDto));
   });
 }
