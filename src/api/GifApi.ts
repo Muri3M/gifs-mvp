@@ -2,9 +2,10 @@
 
 import Axios from 'axios';
 import store from '../store';
+import Gif from '@/models/Gif';
 
 interface RequestInterface {
-  data: any[];
+  data: Gif[];
 }
 
 export default function GifsApi(): void {

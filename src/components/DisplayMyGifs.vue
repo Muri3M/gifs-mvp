@@ -1,5 +1,5 @@
 <template>
-  <div class="Display-My-Gifs">
+  <div class="ui cards">
     <MyGif v-for="(gif, i) in $store.state.myGifs" :key="i" :gif="gif" />
   </div>
 </template>

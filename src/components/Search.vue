@@ -1,8 +1,19 @@
 <template>
-  <form @submit.prevent="setSearch" class="Search">
-    <input type="text" v-model="search" />
-    <button type="submit">load</button>
-  </form>
+  <div class="ui sticky">
+    <form @submit.prevent="setSearch" class="Search">
+      <div class="ui search">
+        <div class="ui icon input">
+          <input
+            class="prompt"
+            type="text"
+            placeholder="Enter with your search..."
+            v-model="search"
+          />
+          <i class="search icon"></i>
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script Lang="ts">
@@ -20,6 +31,13 @@ export default class Search extends Vue {
   setSearch() {
     store.dispatch('setSearch', this.search);
     GifsApi();
+    this.search = '';
   }
 }
 </script>
+
+<style scoped>
+.Search {
+  margin-bottom: 30px;
+}
+</style>

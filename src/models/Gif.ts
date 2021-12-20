@@ -8,6 +8,7 @@ export interface IGIF {
   id?: string;
   title: string;
   url: string;
+  import_datetime: string;
   images: images;
 }
 
@@ -15,6 +16,7 @@ export class GifDTO implements IGIF {
   id?: string;
   title: string = '';
   url: string = '';
+  import_datetime: string = '';
   images: images = {
     fixed_height: {
       url: '',

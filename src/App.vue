@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <DisplayMyGifs />
+  <div class="Container">
+    <button @click="myGifs = !myGifs" />
     <Search />
-    <DisplayGifs />
+    <DisplayMyGifs v-if="myGifs" />
+    <DisplayGifs v-else />
   </div>
 </template>
 
@@ -16,22 +17,19 @@ import DisplayMyGifs from './components/DisplayMyGifs.vue';
 
 import Search from './components/Search.vue';
 
-window.onscroll = () => {
-  // eslint-disable-next-line operator-linebreak
-  const bottomOfWindow =
-    // eslint-disable-next-line operator-linebreak
-    document.documentElement.scrollTop + window.innerHeight ===
-    document.documentElement.offsetHeight;
-  if (bottomOfWindow) {
+window.addEventListener('scroll', () => {
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
     store.dispatch('searchCountUp');
     GifsApi();
   }
-};
+});
 
 @Options({
   components: { DisplayGifs, DisplayMyGifs, Search },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  myGifs = false;
+}
 </script>
 
 <style>
@@ -41,6 +39,11 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 40px;
+  background: #2c3e50;
+  background-size: cover;
+}
+.Container {
+  flex: 1;
 }
 </style>

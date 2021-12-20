@@ -1,4 +1,6 @@
 import { createStore } from 'vuex';
+import VuexPersistence from 'vuex-persist';
+
 import Gif from '@/models/Gif';
 
 export interface State {
@@ -7,6 +9,10 @@ export interface State {
   search: string;
   searchCount: number;
 }
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+});
 
 export default createStore<State>({
   state: {
@@ -24,7 +30,9 @@ export default createStore<State>({
     },
 
     ADD_MY_GIF(state, gif: Gif) {
-      state.myGifs.push(gif);
+      if (state.myGifs.find((g) => g === gif) === undefined) {
+        state.myGifs.push(gif);
+      }
     },
     EDIT_MY_GIF(state, gif: Gif) {
       const index = state.myGifs.findIndex((g) => g.id === gif.id);
@@ -67,4 +75,5 @@ export default createStore<State>({
       commit('SEARCH_COUNT_UP');
     },
   },
+  plugins: [vuexLocal.plugin],
 });
