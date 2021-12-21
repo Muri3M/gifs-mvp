@@ -30,8 +30,10 @@ export default createStore<State>({
     },
 
     ADD_MY_GIF(state, gif: Gif) {
-      if (state.myGifs.find((g) => g === gif) === undefined) {
-        state.myGifs.push(gif);
+      if (state.myGifs.find((g) => g.id === gif.id) === undefined) {
+        state.myGifs.push(JSON.parse(JSON.stringify(gif)));
+      } else {
+        alert('This gif already exists');
       }
     },
     EDIT_MY_GIF(state, gif: Gif) {
