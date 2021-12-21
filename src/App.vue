@@ -1,5 +1,9 @@
 <template>
   <div class="Container">
+    <div class="Header">
+      <img class="logo" src="./assets/Rebel_Alliance_logo.png" />
+      <h1>Alliance of Gifs</h1>
+    </div>
     <div class="ui grey two item inverted menu">
       <a :class="gifsClass" @click="(myGifs = false), (myGifsClass = inative), (gifsClass = active)"
         >Gifs</a
@@ -57,12 +61,26 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding: 40px;
+  padding: 20px;
   background: #2c3e50;
   background-size: cover;
   min-height: 100vh;
 }
 .Spacing {
   height: 67px;
+}
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-bottom: 30px;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 </style>
